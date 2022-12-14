@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Contacts {% endblock %}
+
+{% block container %}
+<div id="form">
+  <h1 class="section-title">Create a new contact</h1>
+  <form action="/new" method="POST">
+    <input type="text" id="fullname" name="fullname" placeholder="Enter the full name" required><br>
+    <input type="email" id="email" name="email" placeholder="Enter an email" required><br>
+    <input type="text" id="phone" name="phone" placeholder="Enter a telephone number" required><br>
+    <input type="submit" value="Save"><br>
+  </form>
+</div>
+
+<div id="contacts">
+  <h1 class="section-title">List of contacts</h1>
+  {% for contact in contacts %}
+  <div class="contact">
+    <h4 class="name">{{contact.fullname}}</h4>
+    <p class="email">{{contact.email}}</p>
+    <p class="phone">{{contact.phone}}</p>
+    <a href="{{ url_for('contacts.update', id=contact.id) }}" class="btn btn-update">Update</a>
+    <a href="{{ url_for('contacts.delete', id=contact.id) }}" class="btn btn-delete">Delete</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

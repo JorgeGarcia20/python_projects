@@ -1,0 +1,24 @@
+{% extends './base.html' %}
+{% block customCSS %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+{% endblock %}
+{% block title %}{{title}}{% endblock %}
+{% block body %}
+<div class="form">
+  <h1 class="text-center">Welcome to my login app</h1>
+  <form action="/login" method="POST">
+  <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Username</label>
+      <input type="text" id="user" name="user" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Password</label>
+      <input type="password" id="password" name="password" class="form-control">
+    </div>
+    <div class="mb-3">
+      <input class="btn btn-primary" type="submit" value="Log In">
+    </div>
+  </form>
+</div>
+{% endblock %}
